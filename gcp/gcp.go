@@ -111,7 +111,7 @@ func GeminiSlack(w http.ResponseWriter, r *http.Request) {
 				genai.ImageData(files[0].Filetype, img),
 				genai.Text(inputText),
 			}
-			model := client.GenerativeModel("gemini-1.5-pro-latest")
+			model := client.GenerativeModel("gemini-1.5-pro")
 			resp, err = model.GenerateContent(ctx, prompt...)
 			if err != nil {
 				log.Printf("model.GenerateContent %s", err)
@@ -120,7 +120,7 @@ func GeminiSlack(w http.ResponseWriter, r *http.Request) {
 			}
 		} else {
 			// Build Chat History
-			model := client.GenerativeModel("gemini-1.5-pro-latest")
+			model := client.GenerativeModel("gemini-1.5-pro")
 			cs := model.StartChat()
 			msgs, _, _, err := slackCli.GetConversationRepliesContext(ctx, replyParams)
 			if err != nil {
