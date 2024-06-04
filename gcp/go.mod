@@ -1,10 +1,11 @@
 module github.com/maito1201/gemini-slack/gcp
 
-go 1.21
+go 1.22
 
 toolchain go1.22.2
 
 require (
+	github.com/eritikass/githubmarkdownconvertergo v0.1.10
 	github.com/google/generative-ai-go v0.5.0
 	github.com/google/go-cmp v0.6.0
 	github.com/slack-go/slack v0.12.3
@@ -18,7 +19,6 @@ require (
 	cloud.google.com/go/compute/metadata v0.2.3 // indirect
 	cloud.google.com/go/longrunning v0.5.4 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/eritikass/githubmarkdownconvertergo v0.1.10 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/go-logr/logr v1.3.0 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
