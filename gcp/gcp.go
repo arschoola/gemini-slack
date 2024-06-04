@@ -98,6 +98,25 @@ func GeminiSlack(w http.ResponseWriter, r *http.Request) {
 			})
 		}
 
+		model := client.GenerativeModel("gemini-1.5-pro")
+		model.SafetySettings = []*genai.SafetySetting{
+			{
+				Category:  genai.HarmCategoryHarassment,
+				Threshold: genai.HarmBlockNone,
+			},
+			{
+				Category:  genai.HarmCategoryDangerousContent,
+				Threshold: genai.HarmBlockNone,
+			},
+			{
+				Category:  genai.HarmCategoryHateSpeech,
+				Threshold: genai.HarmBlockNone,
+			},
+			{
+				Category:  genai.HarmCategorySexuallyExplicit,
+				Threshold: genai.HarmBlockNone,
+			},
+		}
 		if len(files) > 0 {
 			// if image file exist use vision AI Model
 			req, _ := http.NewRequest("GET", files[0].URLPrivate, nil)
@@ -111,7 +130,6 @@ func GeminiSlack(w http.ResponseWriter, r *http.Request) {
 				genai.ImageData(files[0].Filetype, img),
 				genai.Text(inputText),
 			}
-			model := client.GenerativeModel("gemini-1.5-pro")
 			resp, err = model.GenerateContent(ctx, prompt...)
 			if err != nil {
 				log.Printf("model.GenerateContent %s", err)
@@ -120,7 +138,6 @@ func GeminiSlack(w http.ResponseWriter, r *http.Request) {
 			}
 		} else {
 			// Build Chat History
-			model := client.GenerativeModel("gemini-1.5-pro")
 			cs := model.StartChat()
 			msgs, _, _, err := slackCli.GetConversationRepliesContext(ctx, replyParams)
 			if err != nil {
