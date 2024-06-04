@@ -17,3 +17,7 @@ BOT_USER_TOKEN: "xoxb-your-bot-token"
 GEMINI_API_KEY: "your-api-token"
 ```
 get GEMINI_API_KEY from https://makersuite.google.com/app/apikey
+
+## note
+
+using `github.com/eritikass/githubmarkdownconvertergo` to convert gemini markdown to slack mrkdown to enable to display rich text in a slack message
