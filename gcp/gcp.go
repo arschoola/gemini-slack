@@ -13,6 +13,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/eritikass/githubmarkdownconvertergo"
 	"github.com/google/generative-ai-go/genai"
 	"github.com/slack-go/slack"
 	"google.golang.org/api/option"
@@ -136,7 +137,8 @@ func GeminiSlack(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// Post Reply
-		reply := fmt.Sprintf("<@%s> %s", p.Event.User, resp.Candidates[0].Content.Parts[0])
+		msg := fmt.Sprintf("%s", resp.Candidates[0].Content.Parts[0])
+		reply := fmt.Sprintf("<@%s> %s", p.Event.User, githubmarkdownconvertergo.Slack(msg))
 		_, _, err = slackCli.PostMessageContext(
 			ctx,
 			p.Event.Channel,
