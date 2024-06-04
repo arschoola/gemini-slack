@@ -102,19 +102,19 @@ func GeminiSlack(w http.ResponseWriter, r *http.Request) {
 		model.SafetySettings = []*genai.SafetySetting{
 			{
 				Category:  genai.HarmCategoryHarassment,
-				Threshold: genai.HarmBlockNone,
+				Threshold: genai.HarmBlockOnlyHigh,
 			},
 			{
 				Category:  genai.HarmCategoryDangerousContent,
-				Threshold: genai.HarmBlockNone,
+				Threshold: genai.HarmBlockOnlyHigh,
 			},
 			{
 				Category:  genai.HarmCategoryHateSpeech,
-				Threshold: genai.HarmBlockNone,
+				Threshold: genai.HarmBlockOnlyHigh,
 			},
 			{
 				Category:  genai.HarmCategorySexuallyExplicit,
-				Threshold: genai.HarmBlockNone,
+				Threshold: genai.HarmBlockOnlyHigh,
 			},
 		}
 		if len(files) > 0 {
